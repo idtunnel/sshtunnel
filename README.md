@@ -12,7 +12,7 @@ wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/centos6-
 * Script Installasi OPENVPN KVM CENTOS 6 64BIT
 --------
 ```
-wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/ssh-vpn.sh && chmod +x centos.sh && ./centos.sh
+wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/openvpn/centos.sh && chmod +x centos.sh && ./centos.sh
 ```
 * Script Installasi SSH dan OPENVPN KVM CENTOS 6 64BIT
 --------
