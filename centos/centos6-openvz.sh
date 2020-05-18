@@ -289,7 +289,7 @@ chmod +x /etc/rc.d/rc.local
 
 
 # Akun SSH dan VPN Lifetime
-PASS=`jurus69`;
+PASS=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 15 | head -n 1`;
 useradd -M -s /bin/false dayatdacung
 echo "dayatdacung:$PASS" | chpasswd
 echo "dayatdacung" > pass.txt
