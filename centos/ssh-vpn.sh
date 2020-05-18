@@ -68,13 +68,13 @@ yum -y --enablerepo=rpmforge install axel sslh ptunnel unrar
 
 # install webserver
 cd
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/nginx.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/nginx.conf"
 sed -i 's/www-data/nginx/g' /etc/nginx/nginx.conf
 mkdir -p /home/vps/public_html
 echo "<pre>admin@white-vps</pre>" > /home/vps/public_html/index.html
 echo "<?php phpinfo(); ?>" > /home/vps/public_html/info.php
 rm /etc/nginx/conf.d/*
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/vps.conf"
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/vps.conf"
 sed -i 's/apache/nginx/g' /etc/php-fpm.d/www.conf
 chmod -R +rx /home/vps
 service php-fpm restart
@@ -82,8 +82,8 @@ service nginx restart
 
 # install mrtg
 cd /etc/snmp/
-wget -O /etc/snmp/snmpd.conf "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/snmpd.conf"
-wget -O /root/mrtg-mem.sh "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/mrtg-mem.sh"
+wget -O /etc/snmp/snmpd.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/snmpd.conf"
+wget -O /root/mrtg-mem.sh "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/mrtg-mem.sh"
 chmod +x /root/mrtg-mem.sh
 service snmpd restart
 chkconfig snmpd on
@@ -101,12 +101,12 @@ LANG=C /usr/bin/mrtg /etc/mrtg/mrtg.cfg
 
 # setting port ssh
 cd
-wget -O /etc/bannerssh.txt "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/banner.conf"
+wget -O /etc/bannerssh.txt "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/banner.conf"
 sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
 sed -i 's/#Port 22/Port  22/g' /etc/ssh/sshd_config
 
 # set sshd banner
-wget -O /etc/ssh/sshd_config "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/sshd.conf"
+wget -O /etc/ssh/sshd_config "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/sshd.conf"
 service sshd restart
 chkconfig sshd on
 
@@ -124,7 +124,7 @@ chkconfig iptables on
 
 # install vnstat gui
 cd /home/vps/public_html/
-wget https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/vnstat_php_frontend-1.5.1.tar.gz
+wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/vnstat_php_frontend-1.5.1.tar.gz
 tar xf vnstat_php_frontend-1.5.1.tar.gz
 rm vnstat_php_frontend-1.5.1.tar.gz
 mv vnstat_php_frontend-1.5.1 vnstat
@@ -151,7 +151,7 @@ service webmin restart
 chkconfig webmin on
 
 # pasang bmon
-wget -O /usr/bin/bmon "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/bmon64"
+wget -O /usr/bin/bmon "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/bmon64"
 chmod +x /usr/bin/bmon
 
 # Install stunnel centos6
@@ -181,7 +181,7 @@ cd
 
 # Pasang Config Stunnel centos
 cd /usr/bin
-wget -O /etc/rc.d/init.d/stunnel "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/ssl.conf"
+wget -O /etc/rc.d/init.d/stunnel "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/ssl.conf"
 chmod +x /etc/rc.d/init.d/stunnel
 service stunnel start
 chkconfig stunnel on
@@ -200,7 +200,7 @@ yum -y install screen
 # buat directory badvpn
 mkdir badvpn-build
 cd badvpn-build
-wget https://github.com/whitevps2/sshtunnel/raw/master/centos/openvpn/badvpn-update.zip
+wget https://github.com/idtunnel/sshtunnel/raw/master/centos/openvpn/badvpn-update.zip
 unzip badvpn-update
 cmake -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
 make install
@@ -208,8 +208,11 @@ rm badvpn-update.zip
 
 # aut start badvpn
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &' /etc/rc.local
-sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/null &' /etc/rc.local
 screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &
+cd
+cd badvpn-build
+
+sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/null &' /etc/rc.local
 screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/null &
 cd
 
@@ -219,7 +222,7 @@ iptables -A INPUT -i eth0 -m state --state NEW -p tcp --dport 7200 -j ACCEPT
 service iptables save
 
 # Save & restore IPTABLES Centos 6 64bit
-wget -O /etc/iptables.up.rules "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/iptables.up.rules"
+wget -O /etc/iptables.up.rules "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/iptables.up.rules"
 sed -i '$ i\iptables-restore < /etc/iptables.up.rules' /etc/rc.local
 sed -i '$ i\iptables-restore < /etc/iptables.up.rules' /etc/rc.d/rc.local
 MYIP=`curl icanhazip.com`;
@@ -242,14 +245,14 @@ chmod +x /etc/rc.d/rc.local
 
 
 # Akun SSH dan VPN Lifetime
-PASS=`jurus69`;
+PASS=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 15 | head -n 1`;
 useradd -M -s /bin/false dayatdacung
 echo "dayatdacung:$PASS" | chpasswd
 echo "dayatdacung" > pass.txt
 echo "$PASS" >> pass.txt
 
 ##security limite login 
-#wget -O /etc/security/limits.conf "https://github.com/whitevps2/sshtunnel/master/centos/limits.conf"
+#wget -O /etc/security/limits.conf "https://github.com/idtunnel/sshtunnel/master/centos/limits.conf"
 #chmod +x /etc/security/limits.conf
 
 ## limite login
@@ -265,18 +268,18 @@ echo "$PASS" >> pass.txt
 
 # downlaod script
 cd /usr/bin
-wget -O speedtest "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/speedtest_cli.py"
-wget -O bench "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/bench-network.sh"
-wget -O mem "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/ps_mem.py"
-wget -O loginuser "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/login.sh"
-wget -O userlogin "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/user-login.sh"
-wget -O userexpire "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/autoexpire.sh"
-wget -O usernew "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/openvpn/create-user.sh"
-wget -O renew "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/user-renew.sh"
-wget -O userlist "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/user-list.sh" 
-wget -O trial "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/openvpn/user-trial.sh"
-wget -O jurus69 "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/restart.sh"
-wget -O delete "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/expired.sh"
+wget -O speedtest "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/speedtest_cli.py"
+wget -O bench "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/bench-network.sh"
+wget -O mem "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/ps_mem.py"
+wget -O loginuser "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/login.sh"
+wget -O userlogin "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/user-login.sh"
+wget -O userexpire "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/autoexpire.sh"
+wget -O usernew "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/openvpn/create-user.sh"
+wget -O renew "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/user-renew.sh"
+wget -O userlist "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/user-list.sh" 
+wget -O trial "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/openvpn/user-trial.sh"
+wget -O jurus69 "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/restart.sh"
+wget -O delete "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/expired.sh"
 echo "cat log-install.txt" | tee info
 
 # sett permission
@@ -386,7 +389,7 @@ echo ""  | tee -a log-install.txt
 echo "==============================================="  | tee -a log-install.txt
 
 # installasi openvpn centos 6 64bit
-wget https://github.com/whitevps2/sshtunnel/raw/master/centos/openvpn/centos.sh && chmod +x centos.sh && ./centos.sh
+wget https://github.com/idtunnel/sshtunnel/raw/master/centos/openvpn/centos.sh && chmod +x centos.sh && ./centos.sh
 
 # delete bash script installer
 rm -f /root/ssh-vpn.sh
