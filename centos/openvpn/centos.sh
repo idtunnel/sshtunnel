@@ -208,7 +208,7 @@ rm -rf ~/easy-rsa-2.2.2 && rm -rf ~/easy-rsa.tar.gz
 
 # Masuk ke directory Easy-RSA & Buat certificate
 cd /etc/openvpn/easy-rsa/2.0/
-wget -O /etc/openvpn/easy-rsa/2.0/vars "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/openvpn/vars.conf"
+wget -O /etc/openvpn/easy-rsa/2.0/vars "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/openvpn/vars.conf"
 
 # eksekusi vars
 source ./vars
@@ -414,30 +414,30 @@ cp /etc/openvpn/client-tcp-2200.ovpn /root/client-tcp-2200.ovpn
 cp /etc/openvpn/client-udp-2200.ovpn /root/client-udp-2200.ovpn
 
 # Simple password user
-wget -O /etc/pam.d/system-auth "https://raw.githubusercontent.com/whitevps2/portalssh/master/openvpn/centos6/pwd-vultr"
+wget -O /etc/pam.d/system-auth "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/pwd-vultr"
 chmod +x /etc/pam.d/system-auth
 
 # install squid
 yum -y install squid
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/whitevps2/portalssh/master/openvpn/centos6/squid.conf"
+wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/squid-centos.conf"
 sed -i $MYIP2 /etc/squid/squid.conf;
 service squid restart
 chkconfig squid on
 
 # downlaod script
 cd /usr/bin
-wget -O speedtest "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/speedtest_cli.py"
-wget -O bench "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/bench-network.sh"
-wget -O mem "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/ps_mem.py"
-wget -O loginuser "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/login.sh"
-wget -O userlogin "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/user-login.sh"
-wget -O userexpire "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/autoexpire.sh"
-wget -O usernew "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/create-user.sh"
-wget -O renew "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/user-renew.sh"
-wget -O userlist "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/user-list.sh" 
-wget -O trial "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/user-trial.sh"
-wget -O jurus69 "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/restart.sh"
-wget -O delete "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/centos/expired.sh"
+wget -O speedtest "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/speedtest_cli.py"
+wget -O bench "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/bench-network.sh"
+wget -O mem "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/ps_mem.py"
+wget -O loginuser "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/login.sh"
+wget -O userlogin "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/user-login.sh"
+wget -O userexpire "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/autoexpire.sh"
+wget -O usernew "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/create-user.sh"
+wget -O renew "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/user-renew.sh"
+wget -O userlist "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/user-list.sh" 
+wget -O trial "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/user-trial.sh"
+wget -O jurus69 "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/restart.sh"
+wget -O delete "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/expired.sh"
 echo "cat log-install.txt" | tee info
 
 # sett permission
@@ -488,5 +488,4 @@ service openvpn restart
 chkconfig openvpn on
 
 # hapus autoscript insaller
-rm -f /root/OpenVPNcentos64bit.sh
-reboot
+rm -f /root/centos.sh
