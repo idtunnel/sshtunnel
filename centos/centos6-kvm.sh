@@ -141,7 +141,7 @@ LANG=C /usr/bin/mrtg /etc/mrtg/mrtg.cfg
 cd
 wget -O /etc/bannerssh.txt "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/banner.conf"
 sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
-sed -i 's/#Port 22/Port  22/g' /etc/ssh/sshd_config
+sed -i 's/#Port 22/Port 22/g' /etc/ssh/sshd_config
 
 # set sshd banner
 wget -O /etc/ssh/sshd_config "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/sshd.conf"
@@ -445,4 +445,13 @@ echo "----------"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "==============================================="  | tee -a log-install.txt
 
+#firewaal
+cd
+wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/iptables.sh
+chmod +x iptables.sh
+bash iptables.sh
+
 rm -f /root/centos6-kvm.sh
+
+#cek port aktif
+netstat -tulpn | less
