@@ -222,7 +222,7 @@ connect = 127.0.0.1:44
 accept = 444
 
 [dropbear]
-connect = 127.0.0.1:777
+connect = 127.0.0.1:77
 accept = 777
 END
 
