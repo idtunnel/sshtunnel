@@ -10,12 +10,12 @@ MYIP2="s/xxxxxxxxx/$MYIP/g";
 
 #detail nama perusahaan
 country=ID
-state=Banten
-locality=Serang
-organization=www.portalssh.com
-organizationalunit=www.portalssh.com
-commonname=www.portalssh.com
-email=admin@portalssh.com
+state=Semarang
+locality=jawa tengah
+organization=www.hidessh.com
+organizationalunit=www.hidessh.com
+commonname=www.hidessh.com
+email=admin@hidessh.com
 
 # simple password minimal
 wget -O /etc/pam.d/system-auth "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/pwd-vultr"
