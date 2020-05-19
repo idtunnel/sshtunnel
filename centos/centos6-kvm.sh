@@ -75,7 +75,8 @@ chkconfig nginx on
 chkconfig php-fpm on
 
 # install essential package
-yum -y install rrdtool screen iftop htop nmap bc nethogs openvpn vnstat ngrep mtr git zsh mrtg unrar rsyslog rkhunter mrtg net-snmp net-snmp-utils expect nano bind-utils
+#openvpn saya hapus
+yum -y install rrdtool screen iftop htop nmap bc nethogs net-tools vnstat ngrep mtr git zsh mrtg unrar rsyslog rkhunter mrtg net-snmp net-snmp-utils expect nano bind-utils
 yum -y groupinstall 'Development Tools'
 yum -y install cmake
 yum -y --enablerepo=rpmforge install axel sslh ptunnel unrar
@@ -290,8 +291,8 @@ chmod +x /etc/rc.d/rc.local
 
 # Akun SSH dan VPN Lifetime
 PASS=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 15 | head -n 1`;
-useradd -M -s /bin/false dayatdacung
-echo "dayatdacung:$PASS" | chpasswd
+useradd -M -s /bin/false dedot
+echo "dedot123:$PASS" | chpasswd
 echo "dayatdacung" > pass.txt
 echo "$PASS" >> pass.txt
 
