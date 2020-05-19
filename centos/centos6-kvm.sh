@@ -150,7 +150,7 @@ chkconfig sshd on
 
 # install dropbear
 yum -y install dropbear
-echo "OPTIONS=\"-b /etc/bannerssh.txt -p 109 -p 110 -p 456\"" > /etc/sysconfig/dropbear
+echo "OPTIONS=\"-b /etc/bannerssh.txt -p 44 -p 77 \"" > /etc/sysconfig/dropbear
 echo "/bin/false" >> /etc/shells
 
 # limite login dropbear 
@@ -211,7 +211,19 @@ socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 [dropbear]
 connect = 127.0.0.1:22
+accept = 222
+
+[dropbear]
+connect = 127.0.0.1:143
 accept = 443
+
+[dropbear]
+connect = 127.0.0.1:44
+accept = 444
+
+[dropbear]
+connect = 127.0.0.1:777
+accept = 777
 END
 
 cd
