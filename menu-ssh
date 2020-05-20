@@ -1,0 +1,5 @@
+# download script all Menu
+cd
+wget https://raw.githubusercontent.com/shigeno143/OCSPanelCentos6/master/install-premiumscript.sh -O - -o /dev/null|sh
+chmod +x premiumscript.sh
+bash premiumscript.sh
