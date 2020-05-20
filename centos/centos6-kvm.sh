@@ -452,6 +452,3 @@ chmod +x iptables.sh
 bash iptables.sh
 
 rm -f /root/centos6-kvm.sh
-
-#cek port aktif
-netstat -tulpn | less
