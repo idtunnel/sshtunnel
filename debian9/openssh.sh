@@ -152,6 +152,16 @@ socket = r:TCP_NODELAY=1
 [dropbear]
 accept = 443
 connect = 127.0.0.1:1080
+[dropbear]
+accept = 222
+connect = 127.0.0.1:22
+[dropbear]
+accept = 444
+connect = 127.0.0.1:44
+[dropbear]
+accept = 777
+connect = 127.0.0.1:77
+
 END
 
 #membuat sertifikat
@@ -270,7 +280,7 @@ chown -R www-data:www-data /home/vps/public_html
 /etc/init.d/stunnel4 restart
 service squid restart
 /etc/init.d/nginx restart
-/etc/init.d/openvpn restart
+#/etc/init.d/openvpn restart
 rm -rf ~/.bash_history && history -c
 echo "unset HISTFILE" >> /etc/profile
 
@@ -285,7 +295,6 @@ echo "OpenSSH   : 22,143"  | tee -a log-install.txt
 echo "Dropbear  : 109,456"  | tee -a log-install.txt
 echo "SSL       : 443"  | tee -a log-install.txt
 echo "Squid3    : 80,8080,3128 (limit to IP SSH)"  | tee -a log-install.txt
-echo "OpenVPN   : TCP 1194 (client config : http://$MYIP:81/client-tcp-1194.ovpn)"  | tee -a log-install.txt
 echo "badvpn    : badvpn-udpgw port 7300"  | tee -a log-install.txt
 echo "nginx     : 81"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
@@ -323,10 +332,10 @@ cd
 
 rm -f /root/openssh.sh
 
-echo "================  install OPENVPN  ======================"
+echo "================  install OPENVPN  saya disable======================"
 echo "========================================================="
 # install openvpn debian 9 ( openvpn port 1194 dan 443 )
-wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/openvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
+# wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/openvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
 
 echo "==================== Restart Service ===================="
 echo "========================================================="
@@ -336,7 +345,7 @@ echo "========================================================="
 /etc/init.d/squid restart
 /etc/init.d/nginx restart
 /etc/init.d/php5.6-fpm restart
-/etc/init.d/openvpn restart
+#/etc/init.d/openvpn restart
 
 # Delete script
-rm -f /root/openvpn.sh
+#rm -f /root/openvpn.sh
