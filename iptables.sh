@@ -1,3 +1,14 @@
+# Set IPTABLES Centos 6 32bit
+iptables -F
+iptables -X
+iptables -t nat -F
+iptables -t nat -X
+iptables -t mangle -F
+iptables -t mangle -X
+iptables -P INPUT ACCEPT
+iptables -P FORWARD ACCEPT
+iptables -P OUTPUT ACCEPT
+
 #squid
 iptables -A INPUT -i eth0 -m state --state NEW -p udp --dport 8888 -j ACCEPT
 iptables -A INPUT -i eth0 -m state --state NEW -p tcp --dport 8888 -j ACCEPT
