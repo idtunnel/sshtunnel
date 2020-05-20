@@ -9,12 +9,12 @@ MYIP2="s/xxxxxxxxx/$MYIP/g";
 
 # detail nama perusahaan
 country=ID
-state=banten
-locality=werang
+state=Semarang
+locality=Jawa Tengah
 organization=white-vps
-organizationalunit=white-vps
-commonname=white-vps.com
-email=dayatdacung@gmail.com
+organizationalunit=HideSSH
+commonname=hidessh.com
+email=admin@hidessh.com
 
 # go to root
 cd
@@ -93,7 +93,7 @@ wget -qO - http://www.webmin.com/jcameron-key.asc | apt-key add -
 # setting port ssh
 cd
 sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
-sed -i 's/#Port 22/Port  22/g' /etc/ssh/sshd_config
+sed -i 's/#Port 22/Port 22/g' /etc/ssh/sshd_config
 /etc/init.d/ssh restart
 
 echo "================  install Dropbear ======================"
@@ -102,8 +102,8 @@ echo "========================================================="
 # install dropbear
 apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=1080/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 109 -p 456"/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=44/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 77 "/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/ssh restart
