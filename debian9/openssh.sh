@@ -117,7 +117,6 @@ apt-get -y install vnstat
 systemctl start vnstat
 systemctl enable vnstat
 chkconfig vnstat on
-service vnstat status
 chown -R vnstat:vnstat /var/lib/vnstat
 
 # install squid3
