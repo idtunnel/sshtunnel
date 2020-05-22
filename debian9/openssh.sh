@@ -23,7 +23,7 @@ cd
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 
-# set time GMT +7
+# set time GMT +7 jakarta
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
 # set locale
@@ -179,14 +179,14 @@ wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/idtunnel/s
 chmod +x /etc/pam.d/common-password
 
 # buat directory badvpn
-cd /usr/bin
-mkdir build
-cd /usr/bin/build
-wget https://github.com/idtunnel/sshtunnel/raw/master/debian9/badvpn/badvpn-update.zip
-unzip badvpn-update
-cmake -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_TUN2SOCKS=1 -DBUILD_UDPGW=1
-make install
-make -i install
+#cd /usr/bin
+#mkdir build
+#cd /usr/bin/build
+#wget https://github.com/idtunnel/sshtunnel/raw/master/debian9/badvpn/badvpn-update.zip
+#unzip badvpn-update
+#cmake -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_TUN2SOCKS=1 -DBUILD_UDPGW=1
+#make install
+#make -i install
 
 # aut start badvpn
 #sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &' /etc/rc.local
@@ -202,12 +202,12 @@ chmod +x badudp2.sh
 bash badudp2.sh
 
 # set permition rc.local badvpn
-chmod +x /usr/local/bin/badvpn-udpgw
-chmod +x /usr/local/share/man/man7/badvpn.7
-chmod +x /usr/local/bin/badvpn-tun2socks
-chmod +x /usr/local/share/man/man8/badvpn-tun2socks.8
-chmod +x /etc/rc.local
-chmod +x /usr/bin/build
+#chmod +x /usr/local/bin/badvpn-udpgw
+#chmod +x /usr/local/share/man/man7/badvpn.7
+#chmod +x /usr/local/bin/badvpn-tun2socks
+#chmod +x /usr/local/share/man/man8/badvpn-tun2socks.8
+#chmod +x /etc/rc.local
+#chmod +x /usr/bin/build
 
 # Custom Banner SSH
 wget -O /etc/issue.net "https://github.com/idtunnel/sshtunnel/raw/master/debian9/banner-custom.conf"
