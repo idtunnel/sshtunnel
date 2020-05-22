@@ -119,23 +119,23 @@ service php-fpm restart
 service nginx restart
 
 # install mrtg
-cd /etc/snmp/
-wget -O /etc/snmp/snmpd.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/snmpd.conf"
-wget -O /root/mrtg-mem.sh "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/mrtg-mem.sh"
-chmod +x /root/mrtg-mem.sh
-service snmpd restart
-chkconfig snmpd on
-snmpwalk -v 1 -c public localhost | tail
-mkdir -p /home/vps/public_html/mrtg
-cfgmaker --zero-speed 100000000 --global 'WorkDir: /home/vps/public_html/mrtg' --output /etc/mrtg/mrtg.cfg public@localhost
-curl "https://raw.githubusercontent.com/whitevps2/portalssh/master/conf/mrtg.conf" >> /etc/mrtg/mrtg.cfg
-sed -i 's/WorkDir: \/var\/www\/mrtg/# WorkDir: \/var\/www\/mrtg/g' /etc/mrtg/mrtg.cfg
-sed -i 's/# Options\[_\]: growright, bits/Options\[_\]: growright/g' /etc/mrtg/mrtg.cfg
-indexmaker --output=/home/vps/public_html/mrtg/index.html /etc/mrtg/mrtg.cfg
-echo "0-59/5 * * * * root env LANG=C /usr/bin/mrtg /etc/mrtg/mrtg.cfg" > /etc/cron.d/mrtg
-LANG=C /usr/bin/mrtg /etc/mrtg/mrtg.cfg
-LANG=C /usr/bin/mrtg /etc/mrtg/mrtg.cfg
-LANG=C /usr/bin/mrtg /etc/mrtg/mrtg.cfg
+#cd /etc/snmp/
+#wget -O /etc/snmp/snmpd.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/snmpd.conf"
+#wget -O /root/mrtg-mem.sh "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/mrtg-mem.sh"
+#chmod +x /root/mrtg-mem.sh
+#service snmpd restart
+#chkconfig snmpd on
+#snmpwalk -v 1 -c public localhost | tail
+#mkdir -p /home/vps/public_html/mrtg
+#cfgmaker --zero-speed 100000000 --global 'WorkDir: /home/vps/public_html/mrtg' --output /etc/mrtg/mrtg.cfg public@localhost
+#curl "https://raw.githubusercontent.com/whitevps2/portalssh/master/conf/mrtg.conf" >> /etc/mrtg/mrtg.cfg
+#sed -i 's/WorkDir: \/var\/www\/mrtg/# WorkDir: \/var\/www\/mrtg/g' /etc/mrtg/mrtg.cfg
+#sed -i 's/# Options\[_\]: growright, bits/Options\[_\]: growright/g' /etc/mrtg/mrtg.cfg
+#indexmaker --output=/home/vps/public_html/mrtg/index.html /etc/mrtg/mrtg.cfg
+#echo "0-59/5 * * * * root env LANG=C /usr/bin/mrtg /etc/mrtg/mrtg.cfg" > /etc/cron.d/mrtg
+#LANG=C /usr/bin/mrtg /etc/mrtg/mrtg.cfg
+#LANG=C /usr/bin/mrtg /etc/mrtg/mrtg.cfg
+#LANG=C /usr/bin/mrtg /etc/mrtg/mrtg.cfg
 
 # setting port ssh
 cd
@@ -187,13 +187,13 @@ chkconfig squid on
 
 # install webmin
 cd
-wget --no-check-certificate http://prdownloads.sourceforge.net/webadmin/webmin-1.831-1.noarch.rpm
-yum -y install perl perl-Net-SSLeay openssl perl-IO-Tty
-rpm -U webmin*
-rm -f webmin*
-sed -i -e 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
-service webmin restart
-chkconfig webmin on
+#wget --no-check-certificate http://prdownloads.sourceforge.net/webadmin/webmin-1.831-1.noarch.rpm
+#yum -y install perl perl-Net-SSLeay openssl perl-IO-Tty
+#rpm -U webmin*
+#rm -f webmin*
+#sed -i -e 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
+#service webmin restart
+#chkconfig webmin on
 
 # pasang bmon
 wget -O /usr/bin/bmon "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/centos/bmon64"
@@ -305,7 +305,7 @@ chmod +x /etc/rc.d/rc.local
 PASS=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 15 | head -n 1`;
 useradd -M -s /bin/false dedot
 echo "dedot123:$PASS" | chpasswd
-echo "dayatdacung" > pass.txt
+echo "dedot123" > pass.txt
 echo "$PASS" >> pass.txt
 
 ##security limite login 
@@ -315,9 +315,9 @@ echo "$PASS" >> pass.txt
 ## limite login
 #iptables -A INPUT -p tcp --syn --dport 22 -m connlimit --connlimit-above 2 -j REJECT
 #iptables -A INPUT -p tcp --syn --dport 143 -m connlimit --connlimit-above 2 -j REJECT
-#iptables -A INPUT -p tcp --syn --dport 109 -m connlimit --connlimit-above 2 -j REJECT
-#iptables -A INPUT -p tcp --syn --dport 110 -m connlimit --connlimit-above 2 -j REJECT
-#iptables -A INPUT -p tcp --syn --dport 456 -m connlimit --connlimit-above 2 -j REJECT
+#iptables -A INPUT -p tcp --syn --dport 44 -m connlimit --connlimit-above 2 -j REJECT
+#iptables -A INPUT -p tcp --syn --dport 77 -m connlimit --connlimit-above 2 -j REJECT
+#iptables -A INPUT -p tcp --syn --dport 444 -m connlimit --connlimit-above 2 -j REJECT
 #iptables -A INPUT -p tcp --syn --dport 443 -m connlimit --connlimit-above 2 -j REJECT
 #service iptables save
 #service iptables restart
@@ -420,7 +420,7 @@ echo "" | tee -a log-install.txt
 
 echo "Account Default (Untuk SSH dan VPN)"  | tee -a log-install.txt
 echo "---------------"  | tee -a log-install.txt
-echo "User     : white-vps"  | tee -a log-install.txt
+echo "User     : hidessh"  | tee -a log-install.txt
 echo "Password : $PASS"  | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 
