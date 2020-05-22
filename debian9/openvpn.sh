@@ -280,13 +280,16 @@ sed -i $MYIP2 /etc/openvpn/client-tcp-1194.ovpn;
 
 # Buat config client UDP 2200
 cat > /etc/openvpn/client-udp-2200.ovpn <<-END
-##### WELCOME TO PORTALSSH #####
-##### WWW.PORTALSSH.COM #####
+##### WELCOME TO HideSSH #####
+##### WWW.HideSSH.COM #####
 ##### DONT FORGET TO SUPPORT US #####
 client
 dev tun
 proto udp
 remote xxxxxxxxx 2200
+http-proxy-retry
+http-proxy xxxxxxxxx 3128
+http-proxy-option CUSTOM-HEADER Host google.com
 resolv-retry infinite
 route-method exe
 nobind
@@ -301,13 +304,16 @@ sed -i $MYIP2 /etc/openvpn/client-udp-2200.ovpn;
 
 # Buat config client TCP 2200
 cat > /etc/openvpn/client-tcp-2200.ovpn <<-END
-##### WELCOME TO PORTALSSH #####
-##### WWW.PORTALSSH.COM #####
+##### WELCOME TO HideSSH #####
+##### WWW.HideSSH.COM #####
 ##### DONT FORGET TO SUPPORT US #####
 client
 dev tun
 proto tcp
 remote xxxxxxxxx 2200
+http-proxy-retry
+http-proxy xxxxxxxxx 3128
+http-proxy-option CUSTOM-HEADER Host google.com
 resolv-retry infinite
 route-method exe
 nobind
