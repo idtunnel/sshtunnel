@@ -266,6 +266,10 @@ client
 dev tun
 proto tcp
 remote xxxxxxxxx 1194
+http-proxy-retry
+http-proxy xxxxxxxxx 3128
+#bug/Host
+http-proxy-option CUSTOM-HEADER Host google.com
 resolv-retry infinite
 route-method exe
 nobind
@@ -287,9 +291,6 @@ client
 dev tun
 proto udp
 remote xxxxxxxxx 2200
-http-proxy-retry
-http-proxy xxxxxxxxx 3128
-http-proxy-option CUSTOM-HEADER Host google.com
 resolv-retry infinite
 route-method exe
 nobind
@@ -313,6 +314,7 @@ proto tcp
 remote xxxxxxxxx 2200
 http-proxy-retry
 http-proxy xxxxxxxxx 3128
+#bug/host
 http-proxy-option CUSTOM-HEADER Host google.com
 resolv-retry infinite
 route-method exe
