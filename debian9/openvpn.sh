@@ -238,13 +238,16 @@ cd clientconfig
 # Buat config client UDP 1194
 cd /etc/openvpn
 cat > /etc/openvpn/client-udp-1194.ovpn <<-END
-##### WELCOME TO PORTALSSH #####
-##### WWW.PORTALSSH.COM #####
+##### WELCOME TO HideSSH #####
+##### WWW.HideSSH.COM #####
 ##### DONT FORGET TO SUPPORT US #####
 client
 dev tun
 proto udp
 remote xxxxxxxxx 1194
+http-proxy-retry
+http-proxy xxxxxxxxx 3128
+http-proxy-option CUSTOM-HEADER Host google.com
 resolv-retry infinite
 route-method exe
 nobind
@@ -259,13 +262,16 @@ sed -i $MYIP2 /etc/openvpn/client-udp-1194.ovpn;
 
 # Buat config client TCP 1194
 cat > /etc/openvpn/client-tcp-1194.ovpn <<-END
-##### WELCOME TO PORTALSSH #####
-##### WWW.PORTALSSH.COM #####
+##### WELCOME TO HideSSH #####
+##### WWW.HideSSHSSH.COM #####
 ##### DONT FORGET TO SUPPORT US #####
 client
 dev tun
 proto tcp
 remote xxxxxxxxx 1194
+http-proxy-retry
+http-proxy xxxxxxxxx 3128
+http-proxy-option CUSTOM-HEADER Host google.com
 resolv-retry infinite
 route-method exe
 nobind
