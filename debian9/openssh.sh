@@ -87,8 +87,8 @@ echo "neofetch" >> .bashrc
 apt-get -y update
 
 # set repo webmin
-sh -c 'echo "deb http://download.webmin.com/download/repository sarge contrib" > /etc/apt/sources.list.d/webmin.list'
-wget -qO - http://www.webmin.com/jcameron-key.asc | apt-key add -
+#sh -c 'echo "deb http://download.webmin.com/download/repository sarge contrib" > /etc/apt/sources.list.d/webmin.list'
+#wget -qO - http://www.webmin.com/jcameron-key.asc | apt-key add -
 
 # setting port ssh
 cd
@@ -126,17 +126,17 @@ wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/idtunnel/sshtun
 sed -i $MYIP2 /etc/squid/squid.conf;
 /etc/init.d/squid restart
 
-echo "=================  install Webmin  ======================"
+echo "=================  saya matikan install Webmin  ======================"
 echo "========================================================="
 
 # install webmin
 cd
-wget http://prdownloads.sourceforge.net/webadmin/webmin_1.910_all.deb
-dpkg --install webmin_1.910_all.deb;
-apt-get -y -f install;
-sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
-rm -f webmin_1.910_all.deb
-/etc/init.d/webmin restart
+#wget http://prdownloads.sourceforge.net/webadmin/webmin_1.910_all.deb
+#dpkg --install webmin_1.910_all.deb;
+#apt-get -y -f install;
+#sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
+#rm -f webmin_1.910_all.deb
+#/etc/init.d/webmin restart
 
 echo "=================  install stunnel  ====================="
 echo "========================================================="
@@ -309,7 +309,7 @@ echo "trial     : Membuat Akun Trial"  | tee -a log-install.txt
 echo "hapus     : Menghapus Akun SSH"  | tee -a log-install.txt
 echo "cek       : Cek User Login"  | tee -a log-install.txt
 echo "member    : Cek Member SSH"  | tee -a log-install.txt
-echo "jurus69   : Restart Service dropbear, webmin, squid3, stunnel4, vpn, ssh)"  | tee -a log-install.txt
+echo "jurus69   : Restart Service dropbear, squid3, stunnel4, vpn, ssh)"  | tee -a log-install.txt
 echo "reboot    : Reboot VPS"  | tee -a log-install.txt
 echo "speedtest : Speedtest VPS"  | tee -a log-install.txt
 echo "info      : Menampilkan Informasi Sistem"  | tee -a log-install.txt
@@ -319,7 +319,6 @@ echo ""  | tee -a log-install.txt
 
 echo "Fitur lain"  | tee -a log-install.txt
 echo "----------"  | tee -a log-install.txt
-echo "Webmin    : http://$MYIP:10000/"  | tee -a log-install.txt
 echo "Timezone  : Asia/Jakarta (GMT +7)"  | tee -a log-install.txt
 echo "IPv6      : [off]"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
@@ -346,7 +345,7 @@ echo "========================================================="
 /etc/init.d/stunnel4 restart
 /etc/init.d/squid restart
 /etc/init.d/nginx restart
-/etc/init.d/php5.6-fpm restart
+#/etc/init.d/php5.6-fpm restart
 #/etc/init.d/openvpn restart
 
 # Delete script
