@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-# Script Copyright www.white-vps.com
-# Mod by white-vps
+# Script Copyright HideSSH
+# Mod by hideSSH
 # ==========================
 # 
 
@@ -50,6 +50,6 @@ echo "------------------------------------------------"
 
 echo "";
 
-echo "Mod by partner white-vps";
+echo "Mod by partner HideSSH";
 
 echo "";
