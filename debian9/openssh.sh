@@ -245,7 +245,7 @@ cd
 
 # auto start badvpn second port
 cd /usr/bin/build/badvpn-1.999.130
-sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 > /dev/null &' /etc/rc.d/rc.local
+sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 > /dev/null &' /etc/rc.local
 screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 > /dev/null &
 cd
 
