@@ -255,23 +255,55 @@ yum -y install gcc
 yum -y install screen
 
 # buat directory badvpn
-mkdir badvpn-build
-cd badvpn-build
-wget https://github.com/idtunnel/sshtunnel/raw/master/centos/openvpn/badvpn-update.zip
-unzip badvpn-update
-cmake -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
+cd /usr/bin
+mkdir build
+cd build
+wget https://github.com/ambrop72/badvpn/archive/1.999.130.tar.gz
+tar xvzf 1.999.130.tar.gz
+cd badvpn-1.999.130
+cmake -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_TUN2SOCKS=1 -DBUILD_UDPGW=1
 make install
-rm badvpn-update.zip
+make -i install
+
+##### badVPn Versi terbaru ####
+#mkdir badvpn-build
+#cd badvpn-build
+#wget https://github.com/idtunnel/sshtunnel/raw/master/centos/openvpn/badvpn-update.zip
+#unzip badvpn-update
+#cmake -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
+#make install
+#rm badvpn-update.zip
 
 # aut start badvpn
-sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &' /etc/rc.local
+#sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &' /etc/rc.local
+#screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &
+#cd
+#cd badvpn-build
+
+#sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/null &' /etc/rc.local
+#screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/null &
+#cd
+##### badVPn Versi terbaru ####
+
+# auto start badvpn single port
+sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &' /etc/rc.d/rc.local
 screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &
 cd
-cd badvpn-build
 
-sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/null &' /etc/rc.local
+# auto start badvpn second port
+cd /usr/bin/build/badvpn-1.999.130
+sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/null &' /etc/rc.d/rc.local
 screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/null &
 cd
+
+# permition
+chmod +x /usr/local/bin/badvpn-udpgw
+chmod +x /usr/local/share/man/man7/badvpn.7
+chmod +x /usr/local/bin/badvpn-tun2socks
+chmod +x /usr/local/share/man/man8/badvpn-tun2socks.8
+chmod +x /usr/bin/build
+chmod +x /etc/rc.d/rc.local
+
 
 # Sett iptables badvpn
 iptables -A INPUT -i eth0 -m state --state NEW -p tcp --dport 7300 -j ACCEPT
