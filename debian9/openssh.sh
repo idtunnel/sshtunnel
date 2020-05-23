@@ -164,6 +164,8 @@ connect = 127.0.0.1:77
 
 END
 
+echo "=================  membuat Sertifikat OpenSSL ======================"
+echo "========================================================="
 #membuat sertifikat
 openssl genrsa -out key.pem 2048
 openssl req -new -x509 -key key.pem -out cert.pem -days 1095 \
@@ -178,7 +180,13 @@ sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/common-password-deb9"
 chmod +x /etc/pam.d/common-password
 
+
+echo "=================  Install badVPn (VC and Game) ======================"
+echo "========================================================="
+
 # buat directory badvpn
+
+echo "================= Disable badVPN V 1  ======================"
 #cd /usr/bin
 #mkdir build
 #cd /usr/bin/build
@@ -197,9 +205,6 @@ cd
 #sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/null &' /etc/rc.local#
 #screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/null &
 #auto badvpn
-wget https://raw.githubusercontent.com/idtunnel/UDPGW-SSH/master/badudp2.sh
-chmod +x badudp2.sh
-bash badudp2.sh
 
 # set permition rc.local badvpn
 #chmod +x /usr/local/bin/badvpn-udpgw
@@ -208,6 +213,49 @@ bash badudp2.sh
 #chmod +x /usr/local/share/man/man8/badvpn-tun2socks.8
 #chmod +x /etc/rc.local
 #chmod +x /usr/bin/build
+
+
+echo "================= Auto Installer Disable badVPN V 2  ======================"
+#wget https://raw.githubusercontent.com/idtunnel/UDPGW-SSH/master/badudp2.sh
+#chmod +x badudp2.sh
+#bash badudp2.sh
+
+echo "================= Auto Installer Disable badVPN V 3  ======================"
+# buat directory badvpn
+cd /usr/bin
+mkdir build
+cd build
+wget https://github.com/ambrop72/badvpn/archive/1.999.130.tar.gz
+tar xvzf 1.999.130.tar.gz
+cd badvpn-1.999.130
+cmake -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_TUN2SOCKS=1 -DBUILD_UDPGW=1
+make install
+make -i install
+
+# auto start badvpn single port
+sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &' /etc/rc.d/rc.local
+screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &
+cd
+
+# auto start badvpn second port
+cd /usr/bin/build/badvpn-1.999.130
+sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/null &' /etc/rc.d/rc.local
+screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/null &
+cd
+
+# auto start badvpn second port
+cd /usr/bin/build/badvpn-1.999.130
+sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 > /dev/null &' /etc/rc.d/rc.local
+screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 > /dev/null &
+cd
+
+# permition
+chmod +x /usr/local/bin/badvpn-udpgw
+chmod +x /usr/local/share/man/man7/badvpn.7
+chmod +x /usr/local/bin/badvpn-tun2socks
+chmod +x /usr/local/share/man/man8/badvpn-tun2socks.8
+chmod +x /usr/bin/build
+chmod +x /etc/rc.local
 
 # Custom Banner SSH
 wget -O /etc/issue.net "https://github.com/idtunnel/sshtunnel/raw/master/debian9/banner-custom.conf"
