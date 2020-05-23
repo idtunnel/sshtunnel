@@ -1,7 +1,7 @@
 #!/bin/bash
 # Centos 6 64bit ( TCP dan UDP : 992 & 2200 )
 # Original script by white-vps
-# Mod by admin white-vps
+# Mod by hidessh
 # ==================================================
 
 # initialisasi var
@@ -306,10 +306,12 @@ client
 dev tun
 proto tcp
 remote xxxxxxxxx 992
-http-proxy-retry
-http-proxy xxxxxxxxx 3128
+##### Delete Comment To Use Squid Proxy #####
+#http-proxy-retry
+#http-proxy xxxxxxxxx 3128
 #bug/Host
-http-proxy-option CUSTOM-HEADER Host google.com
+#http-proxy-option CUSTOM-HEADER Host google.com
+##### Delete Comment To Use Squid Proxy #####
 resolv-retry infinite
 route-method exe
 nobind
@@ -352,10 +354,12 @@ client
 dev tun
 proto tcp
 remote xxxxxxxxx 2200
-http-proxy-retry
-http-proxy xxxxxxxxx 3128
+##### Delete Comment To Use Squid Proxy #####
+#http-proxy-retry
+#http-proxy xxxxxxxxx 3128
 #bug/Host
-http-proxy-option CUSTOM-HEADER Host google.com
+#http-proxy-option CUSTOM-HEADER Host google.com
+##### Delete Comment To Use Squid Proxy #####
 resolv-retry infinite
 route-method exe
 nobind
