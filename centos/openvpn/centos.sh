@@ -348,6 +348,11 @@ client
 dev tun
 proto tcp
 remote xxxxxxxxx 2200
+##### Modification VPN #####
+http-proxy-retry
+http-proxy xxxxxxxxx 3128
+http-proxy-option CUSTOM-HEADER Host google.com
+##### DONT FORGET TO SUPPORT US #####
 resolv-retry infinite
 route-method exe
 nobind
