@@ -405,7 +405,7 @@ iptables -A POSTROUTING -t nat -j MASQUERADE
 iptables-save > /etc/iptables-opvpn.conf
 
 # Restore iptables
-wget -O /etc/network/if-up.d/iptables "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/debian9/iptables-local"
+wget -O /etc/network/if-up.d/iptables "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/iptables-local"
 chmod +x /etc/network/if-up.d/iptables
 
 # Restore iptables rc.local
