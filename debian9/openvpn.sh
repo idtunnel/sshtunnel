@@ -266,12 +266,6 @@ client
 dev tun
 proto tcp
 remote xxxxxxxxx 1194
-##### Disable Comment To Use Squid Proxy #####
-#http-proxy-retry
-#http-proxy xxxxxxxxx 3128
-#bug/Host
-#http-proxy-option CUSTOM-HEADER Host google.com
-##### Disable Comment To Use Squid Proxy #####
 resolv-retry infinite
 route-method exe
 nobind
@@ -314,12 +308,6 @@ client
 dev tun
 proto tcp
 remote xxxxxxxxx 2200
-##### Disable Comment To Use Squid Proxy #####
-#http-proxy-retry
-#http-proxy xxxxxxxxx 3128
-#bug/Host
-#http-proxy-option CUSTOM-HEADER Host google.com
-##### Disable Comment To Use Squid Proxy #####
 resolv-retry infinite
 route-method exe
 nobind
