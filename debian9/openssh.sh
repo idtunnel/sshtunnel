@@ -1,5 +1,5 @@
 #!/bin/bash
-#
+#created : 
 
 # initialisasi var
 export DEBIAN_FRONTEND=noninteractive
@@ -383,7 +383,7 @@ rm -f /root/openssh.sh
 echo "================  install OPENVPN  saya disable======================"
 echo "========================================================="
 # install openvpn debian 9 ( openvpn port 1194 dan 443 )
-wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/openvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
+#wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/openvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
 
 echo "==================== Restart Service ===================="
 echo "========================================================="
