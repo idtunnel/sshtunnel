@@ -381,9 +381,15 @@ iptables -t nat -I POSTROUTING -s 10.5.0.0/24 -o eth0 -j MASQUERADE
 iptables -t nat -I POSTROUTING -s 10.6.0.0/24 -o eth0 -j MASQUERADE
 iptables -t nat -I POSTROUTING -s 10.7.0.0/24 -o eth0 -j MASQUERADE
 iptables -t nat -I POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
+
 iptables -A INPUT -i eth0 -m state --state NEW -p tcp --dport 3306 -j ACCEPT
 iptables -A INPUT -i eth0 -m state --state NEW -p tcp --dport 7300 -j ACCEPT
 iptables -A INPUT -i eth0 -m state --state NEW -p udp --dport 7300 -j ACCEPT
+
+iptables -t nat -I POSTROUTING -s 10.5.0.0/24 -o ens3 -j MASQUERADE
+iptables -t nat -I POSTROUTING -s 10.6.0.0/24 -o ens3 -j MASQUERADE
+iptables -t nat -I POSTROUTING -s 10.7.0.0/24 -o ens3 -j MASQUERADE
+iptables -t nat -I POSTROUTING -s 10.8.0.0/24 -o ens3 -j MASQUERADE
 
 iptables-save > /etc/iptables/rules.v4
 chmod +x /etc/iptables/rules.v4
@@ -391,7 +397,7 @@ chmod +x /etc/iptables/rules.v4
 # Reload IPTables
 iptables-restore -t < /etc/iptables/rules.v4
 netfilter-persistent save
-netfilter-persistent reload	
+netfilter-persistent reload
 
 # Restart service openvpn
 systemctl enable openvpn
