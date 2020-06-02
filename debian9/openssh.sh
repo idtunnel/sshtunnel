@@ -10,7 +10,7 @@ MYIP2="s/xxxxxxxxx/$MYIP/g";
 # detail nama perusahaan
 country=ID
 state=Semarang
-locality=Jawa Tengah
+locality=JawaTengah
 organization=hidessh
 organizationalunit=HideSSH
 commonname=hidessh.com
@@ -383,7 +383,7 @@ rm -f /root/openssh.sh
 echo "================  install OPENVPN  saya disable======================"
 echo "========================================================="
 # install openvpn debian 9 ( openvpn port 1194 dan 443 )
-#wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/openvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
+wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/openvpn.sh && chmod +x openvpn.sh && bash openvpn.sh
 
 echo "==================== Restart Service ===================="
 echo "========================================================="
