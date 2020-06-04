@@ -106,8 +106,7 @@ echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/ssh restart
 /etc/init.d/dropbear restart
 
-echo "=================  install Squid3  ======================"
-echo "========================================================="
+
 
 # setting dan install vnstat debian 9 64bit
 apt-get -y install vnstat
@@ -116,12 +115,14 @@ systemctl enable vnstat
 chkconfig vnstat on
 chown -R vnstat:vnstat /var/lib/vnstat
 
+echo "=================  install Squid3  ======================"
+echo "========================================================="
 # install squid3
-cd
-apt-get -y install squid3
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/squid3.conf"
-sed -i $MYIP2 /etc/squid/squid.conf;
-/etc/init.d/squid restart
+#cd
+#apt-get -y install squid3
+#wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/squid3.conf"
+#sed -i $MYIP2 /etc/squid/squid.conf;
+#/etc/init.d/squid restart
 
 echo "=================  install stunnel  ====================="
 echo "========================================================="
