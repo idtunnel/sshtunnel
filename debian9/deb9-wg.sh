@@ -73,16 +73,6 @@ apt-get -y install git
 apt-get -y install screen
 apt-get -y install unzip
 apt-get -y install curl
-git clone https://github.com/dylanaraps/neofetch
-cd neofetch
-make install
-make PREFIX=/usr/local install
-make PREFIX=/boot/home/config/non-packaged install
-make -i install
-apt-get -y install neofetch
-cd
-echo "clear" >> .bashrc
-echo "neofetch" >> .bashrc
 
 # instal php5.6 ubuntu 16.04 64bit
 apt-get -y update
@@ -107,7 +97,6 @@ echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/dropbear restart
 
 
-
 # setting dan install vnstat debian 9 64bit
 apt-get -y install vnstat
 systemctl start vnstat
@@ -115,14 +104,6 @@ systemctl enable vnstat
 chkconfig vnstat on
 chown -R vnstat:vnstat /var/lib/vnstat
 
-echo "=================  install Squid3  ======================"
-echo "========================================================="
-# install squid3
-#cd
-#apt-get -y install squid3
-#wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/squid3.conf"
-#sed -i $MYIP2 /etc/squid/squid.conf;
-#/etc/init.d/squid restart
 
 echo "=================  install stunnel  ====================="
 echo "========================================================="
@@ -185,16 +166,6 @@ sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-
 screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 10 &
 cd
 
-# auto start badvpn second port
-#cd /usr/bin/build/badvpn-1.999.130
-sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 1000 --max-connections-for-client 10' /etc/rc.local
-screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 1000 --max-connections-for-client 10 &
-cd
-
-# auto start badvpn second port
-sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 1000 --max-connections-for-client 10' /etc/rc.local
-screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 1000 --max-connections-for-client 10 &
-cd
 
 # permition
 chmod +x /usr/local/bin/badvpn-udpgw
@@ -326,7 +297,6 @@ echo ""  | tee -a log-install.txt
 echo "==========================================="  | tee -a log-install.txt
 cd
 
-rm -f /root/openssh.sh
 echo "==================== Restart Service ===================="
 echo "========================================================="
 /etc/init.d/ssh restart
@@ -334,6 +304,9 @@ echo "========================================================="
 /etc/init.d/stunnel4 restart
 /etc/init.d/squid restart
 /etc/init.d/nginx restart
+
+# auto Delete Acount SSH Expired
+wget -O /usr/local/bin/userdelexpired "https://www.dropbox.com/s/cwe64ztqk8w622u/userdelexpired?dl=1" && chmod +x /usr/local/bin/userdelexpired
 
 # Delete script
 cd
