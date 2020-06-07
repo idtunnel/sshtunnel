@@ -73,6 +73,7 @@ apt-get -y install git
 apt-get -y install screen
 apt-get -y install unzip
 apt-get -y install curl
+apt-get -y install net-tools
 
 # instal php5.6 ubuntu 16.04 64bit
 apt-get -y update
