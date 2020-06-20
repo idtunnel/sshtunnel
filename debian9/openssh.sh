@@ -378,6 +378,10 @@ echo ""  | tee -a log-install.txt
 echo "==========================================="  | tee -a log-install.txt
 cd
 
+# auto Delete Acount SSH Expired
+wget -O /usr/local/bin/userdelexpired "https://www.dropbox.com/s/cwe64ztqk8w622u/userdelexpired?dl=1" && chmod +x /usr/local/bin/userdelexpired
+
+
 rm -f /root/openssh.sh
 
 echo "================  install OPENVPN  saya disable======================"
