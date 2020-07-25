@@ -180,10 +180,13 @@ sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/common-password-deb9"
 chmod +x /etc/pam.d/common-password
 
-#instal sslth
+#instal sslh
 cd
 apt-get install sslh
 
+#configurasi sslh
+wget -O /etc/default/sslh "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/sslh-conf"
+service sslh restart
 
 echo "=================  Install badVPn (VC and Game) ======================"
 echo "========================================================="
