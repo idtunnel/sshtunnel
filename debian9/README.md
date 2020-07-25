@@ -21,7 +21,6 @@ wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/deb9-wg
 --------
 ```
 wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/wg.sh && chmod +x wg.sh && bash wg.sh
-and 
 ```
 and Manejemne 
 --------
