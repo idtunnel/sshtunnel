@@ -15,4 +15,17 @@ wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/openvpn
 --------
 ```
 wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/deb9-wg.sh && chmod +x deb9-wg.sh && bash deb9-wg.sh
+
+```
+* Script Installasi Wiregaud kombine SSH
+--------
+```
+wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/wg.sh && chmod +x wg.sh && bash wg.sh
+and 
+```
+and Manejemne 
+--------
+```
+wget https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/manwg.sh && chmod +x manwg.sh && bash manwg.sh
+
 ```
