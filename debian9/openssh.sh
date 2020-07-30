@@ -179,7 +179,7 @@ chmod +x /etc/pam.d/common-password
 
 #instal sslh
 cd
-apt-get install sslh
+apt-get -y install sslh
 
 #configurasi sslh
 wget -O /etc/default/sslh "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/sslh-conf"
