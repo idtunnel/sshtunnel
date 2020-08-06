@@ -418,6 +418,41 @@ chmod +x /etc/network/if-up.d/iptables
 # wget -O /etc/rc.local "https://raw.githubusercontent.com/whitevps2/sshtunnel/master/debian9/iptables-openvpn"
 # chmod +x /etc/rc.local
 
+# install squid3
+cd
+apt-get -y install squid3
+wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/squid3.conf"
+sed -i $MYIP2 /etc/squid/squid.conf;
+/etc/init.d/squid restart
+
+# download script
+cd /usr/bin
+wget -O menu "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/menu.sh"
+wget -O usernew "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/usernew.sh"
+wget -O trial "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/trial.sh"
+wget -O hapus "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/hapus.sh"
+wget -O cek "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/user-login.sh"
+wget -O member "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/user-list.sh"
+wget -O jurus69 "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/restart.sh"
+wget -O speedtest "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/speedtest_cli.py"
+wget -O info "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/info.sh"
+wget -O about "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/about.sh"
+wget -O delete "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/delete.sh"
+
+echo "0 0 * * * root /sbin/reboot" > /etc/cron.d/reboot
+
+chmod +x menu
+chmod +x usernew
+chmod +x trial
+chmod +x hapus
+chmod +x cek
+chmod +x member
+chmod +x jurus69
+chmod +x speedtest
+chmod +x info
+chmod +x about
+chmod +x delete
+
 # restart opevpn
 /etc/init.d/openvpn restart
 
